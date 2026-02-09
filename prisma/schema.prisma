@@ -1,0 +1,30 @@
+
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+
+
+model Transaction {
+  id          Int      @id @default(autoincrement())
+  customerTin String
+  mrc         String
+  fsNo        String
+  buyerTin    String?
+  date        DateTime
+  item        String
+  qty         Int
+  lineTotal   Float
+
+  @@map("transactions") // optional: maps to a SQL table named "transactions"
+}
+
+
+
+
