@@ -1,5 +1,3 @@
-
-
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
@@ -9,36 +7,28 @@ datasource db {
   provider = "mysql"
 }
 
+model lineitems {
+  id            Int          @id @default(autoincrement())
+  transactionId Int
+  item          String
+  unitAmount    Float
+  quantity      Int
+  totalAmount   Float
+  vatAmount     Float
+  transactions  transactions @relation(fields: [transactionId], references: [id])
 
+  @@index([transactionId], map: "lineitems_transactionId_fkey")
+}
 
-model Transaction {
-  id          Int      @id @default(autoincrement())
+model transactions {
+  id          Int         @id @default(autoincrement())
   customerTin String
   mrc         String
   fsNo        String
   buyerTin    String?
   date        DateTime
   grandTotal  Float
-  lineItems   LineItem[]
-  @@unique([mrc, fsNo]) 
-  @@map("transactions") // optional: maps to a SQL table named "transactions"
+  lineitems   lineitems[]
+
+  @@unique([mrc, fsNo])
 }
-
-
-model LineItem {
-  id           Int     @id @default(autoincrement())
-  transaction  Transaction @relation(fields: [transactionId], references: [id])
-  transactionId Int
-  item         String
-  unitAmount   Float
-  quantity     Int
-  totalAmount  Float
-  vatAmount    Float
-
-  @@map("lineitems")
-}
-
-
-
-
-

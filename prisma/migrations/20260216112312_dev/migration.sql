@@ -1,17 +1,4 @@
 -- CreateTable
-CREATE TABLE `transactions` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `customerTin` VARCHAR(191) NOT NULL,
-    `mrc` VARCHAR(191) NOT NULL,
-    `fsNo` VARCHAR(191) NOT NULL,
-    `buyerTin` VARCHAR(191) NULL,
-    `date` DATETIME(3) NOT NULL,
-    `lineTotal` DOUBLE NOT NULL,
-
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
 CREATE TABLE `lineitems` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `transactionId` INTEGER NOT NULL,
@@ -21,6 +8,21 @@ CREATE TABLE `lineitems` (
     `totalAmount` DOUBLE NOT NULL,
     `vatAmount` DOUBLE NOT NULL,
 
+    INDEX `lineitems_transactionId_fkey`(`transactionId`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `transactions` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `customerTin` VARCHAR(191) NOT NULL,
+    `mrc` VARCHAR(191) NOT NULL,
+    `fsNo` VARCHAR(191) NOT NULL,
+    `buyerTin` VARCHAR(191) NULL,
+    `date` DATETIME(3) NOT NULL,
+    `grandTotal` DOUBLE NOT NULL,
+
+    UNIQUE INDEX `transactions_mrc_fsNo_key`(`mrc`, `fsNo`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

@@ -1,4 +1,4 @@
-import Sales from '@/app/components/sales/page'
+import Sales from '../components/sales/page'
 import React from 'react'
 
 const page = () => {
