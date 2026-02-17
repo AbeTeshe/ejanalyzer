@@ -29,6 +29,8 @@ export async function POST(req) {
   try {
     const body = await req.json();
 
+    console.log(body)
+
     const {
       fsNo,
       date,
@@ -37,7 +39,6 @@ export async function POST(req) {
       buyerTin,
       item,
       qty,
-      unitPrice,
       lineTotal,
       grandTotal,
     } = body;
@@ -72,7 +73,7 @@ const transaction = await prisma.transactions.upsert({
       create: {
         item,
         quantity: Number(qty),
-        unitAmount: Number(unitPrice),
+        unitAmount: Number(lineTotal/qty),
         totalAmount: Number(lineTotal),
         vatAmount: Number(lineTotal) * 0.15,
       },

@@ -182,12 +182,13 @@ const Analyzer = () => {
     }
     setIsSyncing(false);
     alert(`Successfully saved ${success} items to Database`);
+    setItems([])
   };
 
   
   return (
-    <div className="p-2 max-w-7xl mx-auto font-sans bg-gray-50 min-h-screen">
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-3 flex flex-wrap items-center justify-between">
+    <div className=" max-w-7xl mx-auto font-sans bg-gray-50 min-h-screen">
+      <div className="bg-white rounded-lg  mb-1 flex flex-wrap items-center justify-between">
         <h1 className="text-lg font-black text-gray-900 tracking-tight">
           Receipt Analyzer <span className="text-blue-600">v2</span>
         </h1>
@@ -215,7 +216,7 @@ const Analyzer = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow border overflow-hidden">
+      <div className="bg-white rounded-xl shadow border border-gray-200 overflow-hidden">
         <table className="min-w-full text-[11px]">
           <thead className="bg-gray-100 text-black border-b">
             {table.getHeaderGroups().map((hg) => (
