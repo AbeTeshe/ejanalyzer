@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Analyzer from "./Anaylzer";
 import Analyzer2 from "./Anaylzer2";
+import DatecsAnalyzer from "./DatecsAnalyzer";
 
 
 const AnalyzersPage = () => {
@@ -38,11 +39,7 @@ const AnalyzersPage = () => {
       <div className="pt-4">
         {type === "FGE" && <Analyzer />}
         {type === "CFF" && <Analyzer2 />}
-        {type === "Datecs" && (
-          <div className="text-gray-500 italic">
-            Datecs analyzer coming soon...
-          </div>
-        )}
+        {type === "Datecs" && <DatecsAnalyzer />}
       </div>
     </div>
   );
